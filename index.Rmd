@@ -178,6 +178,56 @@ Row
 ### confirmed {.value-box}
 
 ```{r}
+confirmed_mex = as.numeric(df [ df$country=='Mexico', 'confirmed'])
+valueBox(value = format(confirmed_mex, big.mark = ","), 
+         caption = "Mexico Confirmed Cases", 
+         icon = "fas fa-user-md", 
+         color = confirmed_color)
+```
+
+
+### active {.value-box}
+
+```{r}
+active_mex = as.numeric(df [ df$country=='Mexico', 'unrecovered'])
+valueBox(value = paste(format(active_mex, big.mark = ","), " (", 
+                       round(100 * active_mex / confirmed_mex, 1),
+                       "%)", sep = ""), 
+         caption = "Mexico Active Cases", icon = "fas fa-ambulance", 
+         color = active_color)
+```
+
+### recovered {.value-box}
+
+```{r}
+recovered_mex = as.numeric(df [ df$country=='Mexico', 'recovered'])
+valueBox(value = paste(format(recovered_mex, big.mark = ","), " (", 
+                       round(100 * recovered_mex / confirmed_mex, 1),
+                       "%)", sep = "")
+        ,caption = "Mexico Recovered Cases"
+       , icon = "fas fa-heartbeat"
+       ,color = recovered_color)
+```
+
+### death {.value-box}
+
+```{r}
+death_mex = as.numeric(df [ df$country=='Mexico', 'death'])
+valueBox(value = paste(format(death_mex, big.mark = ","), " (", 
+                       round(100 * death_mex / confirmed_mex, 1),
+                       "%)", sep = ""),
+         caption = "Mexico Death Cases"
+       , icon = "fas fa-dizzy"
+        ,color = death_color)
+```
+
+
+Row
+-----------------------------------------------------------------------
+
+### confirmed {.value-box}
+
+```{r}
 
 valueBox(value = paste(format(sum(df$confirmed), big.mark = ","), "", sep = " "), 
          caption = "Total Confirmed Cases", 
@@ -214,7 +264,7 @@ valueBox(value = paste(format(sum(df$death, na.rm = TRUE), big.mark = ","), " ("
                        round(100 * sum(df$death, na.rm = TRUE) / sum(df$confirmed), 1), 
                        "%)", sep = ""),
          caption = "Death Cases", 
-         icon = "fas fa-heart-broken", 
+         icon = "fas fa-dizzy", 
          color = death_color)
 ```
 
