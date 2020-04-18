@@ -13,24 +13,11 @@ knitr::opts_chunk$set(
 
 ### The Coronavirus Dashboard
 
-This [Coronavirus dashboard](https://ramikrispin.github.io/coronavirus_dashboard/) provides an overview of the 2019 Novel Coronavirus COVID-19 (2019-nCoV) epidemic. This dashboard is built with R using the Rmakrdown framework and can easily reproduce by others.
+This [Coronavirus dashboard](https://github.com/rjof/coronavirus_dashboard_mexico/) provides an overview of the 2019 Novel Coronavirus COVID-19 (2019-nCoV) epidemic. This dashboard is built with R using the Rmakrdown framework and can easily reproduce by others.
 
 The data behind this dashboard can be found in the following [repository](https://github.com/RamiKrispin/coronavirus), and its update on a daily bases
 
 
-<img src="figures/dash1.png" width="100%" />
+<img src="figures/fig1.png" width="100%" />
 
-<img src="figures/dash2.png" width="100%" />
-
-
-## Local installation notes
-
-```{r, eval=FALSE}
-Thu Apr 16 11:45:02 1 [olvera !?] ~/Projects/github/coronavirus_dashboard/ brew install llvm
-```
-
-```{r}
-m <- system("brew info llvm", intern=TRUE)
-m
-```
-
+<img src="figures/fig2.png" width="100%" />
