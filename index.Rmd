@@ -10,16 +10,35 @@ output:
 
 ```{r setup, include=FALSE}
 #------------------ Packages ------------------
-library(flexdashboard)
+r=getOption("repos")
+r["CRAN"] = "https://cran.itam.mx"
+options(repos = r)
+rm(r)
+if(!require(flexdashboard)) { install.packages('flexdashboard') ; require('flexdashboard') ; }
+if(!require('coronavirus')) {devtools::install_github("covid19r/coronavirus");require('coronavirus')}
+##if ( !require('coronavirus') ) { install.packages('coronavirus') ; require('coronavirus') ; }
+if ( !require('covid19italy') ) { install.packages('covid19italy') ; require('covid19italy') ; }
+##install.packages('~/Downloads/fst_0.9.2.tgz',repos=NULL,type='source')
+##if ( !require('tidyfst') ) { install.packages('tidyfst') ; require('tidyfst') ; }
+##if ( !require('xml2') ) { install.packages('~/Downloads/xml2_1.3.1.tgz' ,repos=NULL,type='source',configure.vars="INCLUDE_DIR=/usr/local/opt/libxml2/include/libxml2 LIB_DIR=/usr/local/opt/libxml2/lib/") ; require('xml2') }
+##if ( !require('rversions') ) { install.packages('~/Downloads/rversions_2.0.1.tgz',repos=NULL,type='source') ; require('rversions') }
 
 #checks if there is data update on the Github version
-coronavirus::update_datasets(silence = TRUE)
+##coronavirus::update_datasets(silence = TRUE)
+##update.packages("coronavirus")
+##devtools::install_github("covid19r/coronavirus")
 
-library(coronavirus)
-library(covid19italy)
-
-data(coronavirus)
-data(italy_total)
+##data(coronavirus)
+##data(italy_total)
+coronavirus = read.csv2('~/Projects/github/coronavirus_dashboard/data/coronavirus_dataset.csv', sep=',',stringsAsFactors = F, header = T)
+coronavirus=transform( coronavirus
+                      , Province.State = as.character(Province.State)
+                      , Country.Region = as.character(Country.Region)
+                      , Lat = as.numeric(as.character(Lat))
+                      , Long = as.numeric(as.character(Long))
+                      , date = as.Date(date, origin = "1970-01-01")
+                      , type = as.character(type)
+                     )
 
 `%>%` <- magrittr::`%>%`
 #------------------ Parameters ------------------
@@ -135,7 +154,6 @@ df_spain <- coronavirus %>% dplyr::filter(type == "confirmed", Country.Region ==
   dplyr::filter(spain > 100)  %>%
   dplyr::select(-cases, -date)
 df_spain$index <- 1:nrow(df_spain)
-
 
 
 df_italy <- italy_total %>% dplyr::select(date, italy = cumulative_cases) %>%
@@ -405,10 +423,10 @@ plotly::plot_ly(data = df_trajectory) %>%
   plotly::add_lines(x = ~ index,
                     y = ~ china,
                     name = "China",  line = list(width = 2)) %>%
-  plotly::add_lines(x = ~ index,
-                    y = ~ italy,
-                    line = list(color = "red", width = 2),
-                    name = "Italy") %>%
+  ## plotly::add_lines(x = ~ index,
+  ##                   y = ~ italy,
+  ##                   line = list(color = "red", width = 2),
+  ##                   name = "Italy") %>%
   plotly::add_lines(x = ~ index,
                     y = ~ us,
                     name = "United States",  line = list(width = 2)) %>%

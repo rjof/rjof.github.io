@@ -21,3 +21,16 @@ The data behind this dashboard can be found in the following [repository](https:
 <img src="figures/dash1.png" width="100%" />
 
 <img src="figures/dash2.png" width="100%" />
+
+
+## Local installation notes
+
+```{r, eval=FALSE}
+Thu Apr 16 11:45:02 1 [olvera !?] ~/Projects/github/coronavirus_dashboard/ brew install llvm
+```
+
+```{r}
+m <- system("brew info llvm", intern=TRUE)
+m
+```
+
