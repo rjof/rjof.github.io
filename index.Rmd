@@ -18,7 +18,7 @@ if(!require(flexdashboard)) { install.packages('flexdashboard') ; require('flexd
 if(!require('coronavirus')) {devtools::install_github("covid19r/coronavirus");require('coronavirus')}
 if ( !require('covid19italy') ) { install.packages('covid19italy') ; require('covid19italy') ; }
 
-coronavirus = read.csv2('~/Projects/github/coronavirus_dashboard/data/coronavirus_dataset.csv'
+coronavirus = read.csv2('./data/coronavirus_dataset.csv'
                       , sep=',',stringsAsFactors = F, header = T)
 coronavirus=transform(coronavirus
                     , Province.State = as.character(Province.State)
@@ -170,7 +170,7 @@ df_trajectory <- df_mexico %>%
     dplyr::left_join(df_spain, by = "index")
 ```
 
-Summary
+Summary?
 =======================================================================
 Row
 -----------------------------------------------------------------------
