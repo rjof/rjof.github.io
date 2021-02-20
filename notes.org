@@ -1,0 +1,20 @@
+* Notes
+
+The package *tidycovid19* was only installable from inside R
+~remotes::install_github("joachim-gassen/tidycovid19")~
+
+** To try
+
+Does /pip/ succees in your local environment?
+
+~pip install git+git://github.com/haozhu233/kableExtra@master~
+
+As /pip/ failed to install and it could be because of my local
+environment it is worth to try to put it in the environment.yml as
+#+BEGIN_EXAMPLE
+dependencies:
+   - pip:
+     - git+git://github.com/haozhu233/kableExtra.git
+#+END_EXAMPLE
+
+
